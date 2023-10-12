@@ -8,10 +8,10 @@ pipeline {
             }
         }
 
-         stage('SonarQube analysis') {
-             steps {
-                withSonarQubeEnv('SonarQubeServer') {
-                     script {
+        //  stage('SonarQube analysis') {
+        //      steps {
+        //         withSonarQubeEnv('SonarQubeServer') {
+        //              script {
         //                 def scannerHome = tool 'sonar';
         //                 withEnv(["PATH+SONAR=${scannerHome}/bin"]) {
         //                     sh 'sonar-scanner -Dsonar.projectKey=${sonar.project.key} -Dsonar.sources=. -Dsonar.host.url=${sonar.server.url} -Dsonar.login=${sonar.token}'
@@ -73,4 +73,4 @@ pipeline {
         }
     }
 }
-             }
+
