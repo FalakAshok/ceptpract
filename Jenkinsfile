@@ -40,7 +40,7 @@ pipeline {
         stage('Create Docker Image') {
             steps {
                 //sh 'docker build -t myapp:latest .'
-                sh 'docker build -t ashdockash/pract1 .'
+                sh 'sudo docker build -t ashdockash/pract1 .'
 
                 sh 'sudo echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                 sh 'sudo docker push ashdockash/pract1'
