@@ -29,7 +29,7 @@ pipeline {
         stage('Docker Login'){
             steps{
                 withCredentials([string(credentialsId: 'Dockerida', variable: 'dockpass')]) {
-                sh 'docker login -u ashdockash -p $dockpass'
+                sh 'docker login -u ashdockash -p ${dockpass}'
                 }
             }
 }
