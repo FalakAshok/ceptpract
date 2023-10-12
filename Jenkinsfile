@@ -1,33 +1,16 @@
 pipeline {
     agent any 
-    environment {
-        DOCKERHUB_CREDENTIALS=credentials('6eb49c6a-0935-46bf-b275-e400e3efe4c8')
-    }
+    // environment {
+    //     DOCKERHUB_CREDENTIALS=credentials('6eb49c6a-0935-46bf-b275-e400e3efe4c8')
+    // }
 
     stages {
         stage('Build') {
             steps {
                 echo "Build Process"
             }
-        }
-
-        //  stage('SonarQube analysis') {
-        //      steps {
-        //         withSonarQubeEnv('SonarQubeServer') {
-        //              script {
-        //                 def scannerHome = tool 'sonar';
-        //                 withEnv(["PATH+SONAR=${scannerHome}/bin"]) {
-        //                     sh 'sonar-scanner -Dsonar.projectKey=${sonar.project.key} -Dsonar.sources=. -Dsonar.host.url=${sonar.server.url} -Dsonar.login=${sonar.token}'
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
-
-      
-
-        stage('Package') {
+        }  
+         stage('Package') {
             steps {
                // Package both the HTML file and the images folder
                 //sh 'tar -czf my-html-project.tar.gz index.html images/'
@@ -46,8 +29,9 @@ pipeline {
         stage('Docker Login'){
             steps{
                 withCredentials([string(credentialsId: 'Dockerida', variable: 'dockpass')]) {
-                sh 'docker login -u ashdockash -p'
+                sh 'docker login -u ashdockash -p $dockpass'
                 }
+            }
 }
 
   //               sh 'sudo echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
