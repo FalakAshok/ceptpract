@@ -40,44 +40,52 @@ pipeline {
         stage('Create Docker Image') {
             steps {
                 //sh 'docker build -t myapp:latest .'
-                sh 'sudo docker build -t ashdockash/pract1 .'
-
-                sh 'sudo echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                sh 'sudo docker push ashdockash/pract1'
+                sh 'sudo docker build -t ashdockash/pract1:{BUILD_NUMBER} .'
             }
         }
+        stage('Docker Login'){
+            steps{
+                withCredentials([string(credentialsId: 'Dockerida', variable: 'dockpass')]) {
+                sh 'docker login -u ashdockash -p'
+                }
+}
 
-        // stage('Deploy Docker Image') {
-        //     steps {
-        //         //sshagent(['deploy_key']) { //// replace 'my-ssh-key-id' with your actual credential ID
-        //             sh 'docker save myapp:latest | ssh admin1@172.28.12.198 "docker load"'
-        //         }
-        //     }
-  //       }
-
-  // stage('Stop and Remove Existing Docker Container') {
-  //           steps {
-  //               sshagent(['deploy_key']) {
-  //                   sh 'ssh admin1@172.28.12.198 "docker stop myapp_container && docker rm myapp_container || true"'
-  //               }
+  //               sh 'sudo echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+  //               sh 'sudo docker push ashdockash/pract1'
   //           }
   //       }
 
+  //       // stage('Deploy Docker Image') {
+  //       //     steps {
+  //       //         //sshagent(['deploy_key']) { //// replace 'my-ssh-key-id' with your actual credential ID
+  //       //             sh 'docker save myapp:latest | ssh admin1@172.28.12.198 "docker load"'
+  //       //         }
+  //       //     }
+  // //       }
+
+  // // stage('Stop and Remove Existing Docker Container') {
+  // //           steps {
+  // //               sshagent(['deploy_key']) {
+  // //                   sh 'ssh admin1@172.28.12.198 "docker stop myapp_container && docker rm myapp_container || true"'
+  // //               }
+  // //           }
+  // //       }
 
 
-  //       stage('Run Docker Container') {
-  //           steps {
-  //               sshagent(['deploy_key']) { // replace 'my-ssh-key-id' with your actual credential ID
+
+  // //       stage('Run Docker Container') {
+  // //           steps {
+  // //               sshagent(['deploy_key']) { // replace 'my-ssh-key-id' with your actual credential ID
                     
                  
                     
-  //                   sh '''
-  //                       ssh admin1@172.28.12.198 'docker run -d -p 8083:80 --name myapp_container myapp:latest'
+  // //                   sh '''
+  // //                       ssh admin1@172.28.12.198 'docker run -d -p 8083:80 --name myapp_container myapp:latest'
 
-  //                   '''
-  //               }
-  //           }
-  //       }
+  // //                   '''
+  // //               }
+  // //           }
+  // //       }
     }
 }
 
