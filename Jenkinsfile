@@ -28,7 +28,6 @@ pipeline {
         }
         stage('Docker Login'){
             steps{
-               // withCredentials([string(credentialsId: 'Dockerida', variable: 'dockpass')]) {
                 
                     withCredentials([string(credentialsId: 'ashdockash', variable: 'Dockerid')]) {
     // some block
@@ -75,5 +74,5 @@ pipeline {
   // //           }
   // //       }
     }
-}
+
 
