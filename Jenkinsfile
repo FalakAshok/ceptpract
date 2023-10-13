@@ -23,7 +23,7 @@ pipeline {
         stage('Create Docker Image') {
             steps {
                 //sh 'docker build -t myapp:latest .'
-                sh 'docker build -t ashdockash/pract1:{BUILD_NUMBER} .'
+                sh 'docker build -t ashdockash/pract1:latest .'
             }
         }
         stage('Docker Login'){
