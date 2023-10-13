@@ -1,8 +1,8 @@
 pipeline {
     agent any 
-    // environment {
-    //     DOCKERHUB_CREDENTIALS=credentials('6eb49c6a-0935-46bf-b275-e400e3efe4c8')
-    // }
+     environment {
+         DOCKERHUB_CREDENTIALS=credentials('6eb49c6a-0935-46bf-b275-e400e3efe4c8')
+     }
 
     stages {
         stage('Build') {
@@ -23,7 +23,7 @@ pipeline {
         stage('Create Docker Image') {
             steps {
                 //sh 'docker build -t myapp:latest .'
-                sh 'docker build -t ashdockash:latest .'
+                sh 'docker build -t ashdockash/pract1:latest .'
             }
         }
         stage('Docker Login'){
