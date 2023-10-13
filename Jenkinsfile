@@ -1,8 +1,8 @@
 pipeline {
     agent any 
-     environment {
-         DOCKERHUB_CREDENTIALS=credentials('6eb49c6a-0935-46bf-b275-e400e3efe4c8')
-     }
+     //environment {
+       //  DOCKERHUB_CREDENTIALS=credentials('6eb49c6a-0935-46bf-b275-e400e3efe4c8')
+    // }
 
     stages {
         stage('Build') {
@@ -28,8 +28,12 @@ pipeline {
         }
         stage('Docker Login'){
             steps{
-                withCredentials([string(credentialsId: 'Dockerida', variable: 'dockpass')]) {
-                sh 'docker login -u ashdockash -p ${dockpass}'
+               // withCredentials([string(credentialsId: 'Dockerida', variable: 'dockpass')]) {
+                
+                    withCredentials([string(credentialsId: 'ashdockash', variable: 'Dockerid')]) {
+    // some block
+                        sh 'docker login -u ashdockash -p ${Dockerid}'
+}
                 }
             }
 }
